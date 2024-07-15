@@ -8,7 +8,7 @@ Este projeto é um template Docker para utilização em projetos Laravel, facili
 
 A estrutura do projeto é organizada da seguinte forma:
 
-```bash
+```shell
 .
 ├── .dockerignore
 └── docker
@@ -33,25 +33,25 @@ Siga os passos abaixo para configurar e iniciar o ambiente Docker para o seu pro
 
 1. Clone o repositório para a sua máquina local:
 
-```bash
+```shell
 git clone https://github.com/AlexandreRiff/docker-template-laravel.git
 ```
 
 2. Navegue até o diretório do projeto:
 
-```bash
+```shell
 cd docker-template-laravel
 ```
 
 3. Copie a pasta `docker` e o arquivo `.dockerignore` para o diretório raiz do seu projeto Laravel.
 
-```bash
+```shell
 cp -R docker .dockerignore seu_projeto_laravel
 ```
 
 4. Configure as variáveis de ambiente no arquivo `.env` do Laravel:
 
-```bash
+```shell
 DB_CONNECTION=mysql
 DB_HOST=mysql
 DB_PORT=3306
@@ -77,6 +77,21 @@ MAIL_PORT=1025
 
 5. Construa e Suba os Containers
 
-```bash
+```shell
 cd docker/dev && docker-compose up -d --build
+```
+
+## 📦 Instalando Extensões PHP
+
+Para instalar extensões PHP em um ambiente Docker, foi utilizado o script [docker-php-extension-installer](https://github.com/mlocati/docker-php-extension-installer?tab=readme-ov-file), desenvolvido por [Michele Locati](https://github.com/mlocati).
+
+Para adicionar novas extensões, basta incluir a extensão desejada na instrução `RUN install-php-extensions` dentro do `Dockerfile`.
+
+Exemplo:
+
+```shell
+RUN install-php-extensions \
+    zip \
+    pdo_mysql \
+    redis
 ```
